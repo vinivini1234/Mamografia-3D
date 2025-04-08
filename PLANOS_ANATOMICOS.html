@@ -41,6 +41,7 @@
     top: 0;
     left: 0;
     background: white;
+    z-index: 90;
   }
 
   /* Estilo do iframe */
@@ -100,82 +101,73 @@
     </div>
     
     <!-- Container do visualizador 3D -->
-    <div id="embedded-human-container"></div>
+    <div id="embedded-human-container">
+        <iframe id="embedded-human" 
+                allowfullscreen="true"
+                loading="lazy"
+                style="display:none;"
+                src="https://human.biodigital.com/viewer/?id=64UL&ui-anatomy-descriptions=true&ui-anatomy-pronunciations=true&ui-anatomy-labels=true&ui-audio=true&ui-chapter-list=false&ui-fullscreen=true&ui-help=true&ui-info=true&ui-label-list=true&ui-layers=true&ui-skin-layers=true&ui-loader=circle&ui-media-controls=full&ui-menu=true&ui-nav=true&ui-search=true&ui-tools=true&ui-tutorial=false&ui-undo=true&ui-whiteboard=true&initial.none=true&disable-scroll=false&uaid=M2Gzp&lang=pt&paid=o_045c6c4d">
+        </iframe>
+    </div>
 
 <script>
-// Pré-conexão para acelerar carregamento futuro
+// Pré-conexão para acelerar carregamento
 window.addEventListener('load', function() {
-    // Adia o pré-carregamento para priorizar outros recursos
-    setTimeout(() => {
-        const prefetchLink = document.createElement('link');
-        prefetchLink.rel = 'preconnect';
-        prefetchLink.href = 'https://human.biodigital.com';
-        document.head.appendChild(prefetchLink);
-    }, 1000);
+    const prefetchLink = document.createElement('link');
+    prefetchLink.rel = 'preconnect';
+    prefetchLink.href = 'https://human.biodigital.com';
+    document.head.appendChild(prefetchLink);
 });
 
 document.getElementById('planosAnatomicosBtn').addEventListener('click', function() {
     const container = document.getElementById("embedded-human-container");
+    const iframe = document.getElementById("embedded-human");
     const btn = this;
     const loader = document.getElementById("loader");
     
-    // Se já estiver visível, apenas fecha
+    // Alternar visibilidade
     if (container.style.display === 'block') {
         container.style.display = 'none';
         btn.textContent = 'Planos Anatômicos';
         return;
     }
     
-    // Mostra o loader imediatamente
+    // Mostrar loader
     loader.style.display = 'block';
     btn.disabled = true;
     btn.textContent = 'Carregando...';
     
-    // Se não tiver sido carregado ainda
-    if (!container.innerHTML) {
-        // Cria o iframe mas não carrega ainda
-        container.innerHTML = `
-            <iframe id="embedded-human" 
-                    allowFullScreen="true"
-                    loading="eager"
-                    data-src="https://human.biodigital.com/viewer/?id=64UL&ui-anatomy-descriptions=true&ui-anatomy-pronunciations=true&ui-anatomy-labels=true&ui-audio=true&ui-chapter-list=false&ui-fullscreen=true&ui-help=true&ui-info=true&ui-label-list=true&ui-layers=true&ui-skin-layers=true&ui-loader=circle&ui-media-controls=full&ui-menu=true&ui-nav=true&ui-search=true&ui-tools=true&ui-tutorial=false&ui-undo=true&ui-whiteboard=true&initial.none=true&disable-scroll=false&uaid=M2Gzp&lang=pt&paid=o_045c6c4d">
-            </iframe>`;
-        
-        // Carrega o iframe após um pequeno delay para o loader aparecer
-        setTimeout(() => {
-            const iframe = document.getElementById('embedded-human');
-            iframe.src = iframe.getAttribute('data-src');
-            
-            // Quando o iframe carregar
-            iframe.onload = function() {
-                container.style.display = 'block';
-                loader.style.display = 'none';
-                btn.textContent = 'Fechar Visualizador';
-                btn.disabled = false;
-            };
-            
-            // Timeout de segurança se houver erro no carregamento
-            setTimeout(() => {
-                if (container.style.display !== 'block') {
-                    loader.style.display = 'none';
-                    btn.textContent = 'Planos Anatômicos';
-                    btn.disabled = false;
-                    alert('O modelo está demorando mais que o normal para carregar. Por favor, tente novamente.');
-                }
-            }, 15000); // 15 segundos de timeout
-        }, 100);
-    } else {
-        // Se já foi carregado antes, apenas mostra
-        container.style.display = 'block';
+    // Mostrar iframe (já está carregando em background devido ao loading="lazy")
+    iframe.style.display = 'block';
+    container.style.display = 'block';
+    
+    // Quando o iframe terminar de carregar
+    iframe.onload = function() {
+        loader.style.display = 'none';
+        btn.textContent = 'Fechar Visualizador';
+        btn.disabled = false;
+    };
+    
+    // Se o iframe já estiver carregado
+    if (iframe.complete) {
         loader.style.display = 'none';
         btn.textContent = 'Fechar Visualizador';
         btn.disabled = false;
     }
+    
+    // Timeout de segurança
+    setTimeout(() => {
+        if (loader.style.display !== 'none') {
+            loader.style.display = 'none';
+            btn.textContent = 'Fechar Visualizador';
+            btn.disabled = false;
+        }
+    }, 10000); // 10 segundos de timeout
 });
 
-// Detecta conexão lenta
+// Detectar conexão lenta
 if (navigator.connection && navigator.connection.effectiveType) {
-    if (navigator.connection.effectiveType.includes('2g') {
+    if (navigator.connection.effectiveType.includes('2g')) {
         const message = document.createElement('div');
         message.className = 'loading-message';
         message.textContent = 'Sua conexão parece estar lenta. O modelo 3D pode demorar para carregar.';

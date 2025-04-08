@@ -7,7 +7,6 @@
   body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background-color: #f5f5f5;
   }
 
   /* Estilo do botão */
@@ -40,8 +39,6 @@
     position: fixed;
     top: 0;
     left: 0;
-    background: white;
-    z-index: 90;
   }
 
   /* Estilo do iframe */
@@ -50,60 +47,16 @@
     height: 100%;
     border: none;
   }
-
-  /* Loader */
-  #loader {
-    display: none;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 1000;
-  }
-  
-  .spinner {
-    border: 5px solid #f3f3f3;
-    border-top: 5px solid #4CAF50;
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    animation: spin 1s linear infinite;
-  }
-
-  @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-  }
-
-  /* Mensagem para conexões lentas */
-  .loading-message {
-    position: fixed;
-    top: 60%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: #666;
-    font-size: 14px;
-    text-align: center;
-    z-index: 1000;
-    width: 80%;
-    max-width: 300px;
-  }
 </style>
 </head>
 <body>
     <!-- Botão Planos Anatômicos -->
     <button id="planosAnatomicosBtn">Planos Anatômicos</button>
     
-    <!-- Loader e mensagem -->
-    <div id="loader">
-        <div class="spinner"></div>
-        <div class="loading-message">Carregando modelo 3D...</div>
-    </div>
-    
     <!-- Container do visualizador 3D -->
     <div id="embedded-human-container">
         <iframe id="embedded-human" 
-                allowfullscreen="true"
+                allowfullscreen
                 loading="lazy"
                 style="display:none;"
                 src="https://human.biodigital.com/viewer/?id=64UL&ui-anatomy-descriptions=true&ui-anatomy-pronunciations=true&ui-anatomy-labels=true&ui-audio=true&ui-chapter-list=false&ui-fullscreen=true&ui-help=true&ui-info=true&ui-label-list=true&ui-layers=true&ui-skin-layers=true&ui-loader=circle&ui-media-controls=full&ui-menu=true&ui-nav=true&ui-search=true&ui-tools=true&ui-tutorial=false&ui-undo=true&ui-whiteboard=true&initial.none=true&disable-scroll=false&uaid=M2Gzp&lang=pt&paid=o_045c6c4d">
@@ -111,7 +64,7 @@
     </div>
 
 <script>
-// Pré-conexão para acelerar carregamento
+// Pré-conexão para melhorar performance
 window.addEventListener('load', function() {
     const prefetchLink = document.createElement('link');
     prefetchLink.rel = 'preconnect';
@@ -123,58 +76,17 @@ document.getElementById('planosAnatomicosBtn').addEventListener('click', functio
     const container = document.getElementById("embedded-human-container");
     const iframe = document.getElementById("embedded-human");
     const btn = this;
-    const loader = document.getElementById("loader");
     
     // Alternar visibilidade
     if (container.style.display === 'block') {
         container.style.display = 'none';
         btn.textContent = 'Planos Anatômicos';
-        return;
-    }
-    
-    // Mostrar loader
-    loader.style.display = 'block';
-    btn.disabled = true;
-    btn.textContent = 'Carregando...';
-    
-    // Mostrar iframe (já está carregando em background devido ao loading="lazy")
-    iframe.style.display = 'block';
-    container.style.display = 'block';
-    
-    // Quando o iframe terminar de carregar
-    iframe.onload = function() {
-        loader.style.display = 'none';
+    } else {
+        iframe.style.display = 'block';
+        container.style.display = 'block';
         btn.textContent = 'Fechar Visualizador';
-        btn.disabled = false;
-    };
-    
-    // Se o iframe já estiver carregado
-    if (iframe.complete) {
-        loader.style.display = 'none';
-        btn.textContent = 'Fechar Visualizador';
-        btn.disabled = false;
     }
-    
-    // Timeout de segurança
-    setTimeout(() => {
-        if (loader.style.display !== 'none') {
-            loader.style.display = 'none';
-            btn.textContent = 'Fechar Visualizador';
-            btn.disabled = false;
-        }
-    }, 10000); // 10 segundos de timeout
 });
-
-// Detectar conexão lenta
-if (navigator.connection && navigator.connection.effectiveType) {
-    if (navigator.connection.effectiveType.includes('2g')) {
-        const message = document.createElement('div');
-        message.className = 'loading-message';
-        message.textContent = 'Sua conexão parece estar lenta. O modelo 3D pode demorar para carregar.';
-        message.style.top = '70%';
-        document.body.appendChild(message);
-    }
-}
 </script>
 </body>
 </html>

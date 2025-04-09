@@ -5,6 +5,8 @@ body {
     font-family: Arial, sans-serif;
     background-image: url('background.jpeg');
     background-size: cover;
+    padding-top: 118px; /* 43px (azul) + 75px (branca) */
+    min-height: 100vh;
 }
 
 /* BARRA AZUL (FIXA NO TOPO) */
@@ -33,27 +35,38 @@ body::after {
     height: 75px;
     border-bottom: 1px solid #ddd;
     position: fixed;
-    top: 43px; /* Posiciona logo abaixo da barra azul */
+    top: 43px;
     width: 100%;
     z-index: 100;
 }
 
-/* ESPAÇO PARA AS BARRAS FIXAS */
-body {
-    padding-top: 118px; /* 43px (azul) + 75px (branca) */
+/* CONTAINER PRINCIPAL (PARA O IFRAME) */
+.main-content {
+    position: relative;
+    width: 100%;
+    height: calc(100vh - 118px); /* Desconta altura das barras */
+    overflow: hidden;
+}
+
+/* ESTILO DO IFRAME */
+.embedded-viewer {
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: block;
 }
 
 /* NAVEGAÇÃO - ESTILO VERTICAL */
 nav {
     margin: 20px;
-    background: transparent; /* Remove fundo cinza */
+    background: transparent;
 }
 
 nav ul {
     list-style: none;
     padding: 0;
     margin: 0;
-    display: block; /* Altera para vertical */
+    display: block;
 }
 
 nav li {

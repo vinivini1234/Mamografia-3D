@@ -1,84 +1,57 @@
-/* styles.css - Versão Corrigida */
-
-html, body {
+/* ESTILOS GERAIS */
+body {
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
-}
-
-body {
     background-image: url('background.jpeg');
     background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    display: flex;
-    flex-direction: column;
+    position: relative;
 }
 
-/* Barras do cabeçalho */
-.header-bar {
+/* BARRA AZUL (cabeçalho) */
+body::before {
+    content: "Senac"; /* Texto do cabeçalho */
+    display: block;
     background-color: #0054A6;
     color: white;
     height: 43px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    flex-shrink: 0;
+    text-align: center;
+    line-height: 43px;
+    font-weight: bold;
+    font-size: 18px;
 }
 
-.white-bar {
+/* BARRA BRANCA (logo) */
+body::after {
+    content: "";
+    display: block;
     background-color: white;
     height: 75px;
-    border-bottom: 1px solid #e0e0e0;
-    display: flex;
-    align-items: center;
-    padding-left: 20px;
-    flex-shrink: 0;
+    border-bottom: 1px solid #ddd;
+    background-image: url('logo.png');
+    background-size: auto 60px;
+    background-repeat: no-repeat;
+    background-position: 20px center;
 }
 
-.logo {
-    height: 60px;
-    width: auto;
-}
-
-/* Área de conteúdo principal */
+/* CONTEÚDO PRINCIPAL */
 .main-content {
-    min-height: calc(100vh - 118px); /* Altura total menos as barras */
-    padding-top: 20px; /* Espaço acima dos links */
-    flex-grow: 1;
-    overflow-y: auto; /* Permite rolagem vertical se necessário */
-    padding: 20px; /* Espaçamento interno */
-    display: flex;
-    flex-direction: column;
-    gap: 15px; /* Espaço entre os links */
+    padding: 20px;
+    margin-top: 118px; /* 43px (azul) + 75px (branca) */
 }
 
-/* Estilo para os links de navegação */
-.nav-links {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    padding: 15px;
-}
-
-.nav-links a {
+/* ESTILO DOS LINKS */
+.main-content a {
+    display: block;
     font-size: 24px;
     color: white;
+    background-color: rgba(0, 84, 166, 0.7);
     text-decoration: none;
-    background-color: rgba(0, 84, 166, 0.7); /* Azul SENAC com transparência */
-    padding: 10px 15px;
-    border-radius: 5px;
-    transition: background-color 0.3s;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 4px;
 }
 
-.nav-links a:hover {
+.main-content a:hover {
     background-color: rgba(0, 84, 166, 0.9);
-}
-
-@media (max-width: 768px) {
-    .nav-links a {
-        font-size: 18px;
-        padding: 8px 12px;
-    }
 }

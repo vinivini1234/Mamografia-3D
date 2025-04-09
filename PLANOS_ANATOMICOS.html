@@ -11,7 +11,40 @@
             font-family: Arial, sans-serif;
             height: 100%;
             overflow: hidden;
-        }      
+        }
+        
+        /* Barra azul superior */
+        .header-bar {
+            background-color: #0054A6;
+            color: white;
+            height: 43px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .header-title {
+            margin: 0;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        
+        /* Barra branca com logo */
+        .white-bar {
+            background-color: white;
+            height: 75px;
+            border-bottom: 1px solid #e0e0e0;
+            display: flex;
+            align-items: center; /* Centraliza verticalmente */
+            padding-left: 20px; /* Espaço da margem esquerda */
+        }
+        
+        .logo {
+            height: 60px; /* Altura da logo (ajuste conforme necessário) */
+            width: auto; /* Mantém proporção original */
+        }
+        
         /* Container do visualizador */
         #viewer-container {
             height: calc(100vh - 118px); /* 100vh - (43px + 75px) */
@@ -30,7 +63,18 @@
 </style>
 </head>
 <body>
-      <!-- Visualizador 3D -->
+    <!-- Barra azul superior -->
+    <div class="header-bar">
+        <h1 class="header-title">VISUALIZADOR ANATÔMICO 3D</h1>
+    </div>
+
+    <!-- Barra branca com logo -->
+    <div class="white-bar">
+        <!-- Substitua "caminho/para/sua/logo.png" pelo caminho real da sua imagem -->
+        <img src="logo.png" alt="Logo" class="logo">
+    </div>
+
+    <!-- Visualizador 3D -->
     <div id="viewer-container">
         <iframe id="embedded-human" 
                 frameBorder="0"

@@ -108,3 +108,72 @@ nav a:hover {
 .home-link:hover {
     text-decoration: underline;
 }
+/* ... (mantenha todo o CSS existente acima) ... */
+
+/* AJUSTES OTIMIZADOS PARA DISPOSITIVOS MÓVEIS */
+@media (max-width: 768px) {
+    body {
+        padding-bottom: 30px;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch; /* Melhora rolagem no iOS */
+    }
+    
+    #viewer-container {
+        position: relative;
+        top: 118px;
+        height: auto;
+        min-height: calc(100vh - 118px);
+        padding-bottom: 30px;
+        overflow: visible; /* Permite que conteúdo extra seja visível */
+    }
+    
+    #embedded-human {
+        min-height: 60vh;
+        height: auto;
+        max-height: calc(100vh - 150px); /* Considera espaço adicional */
+    }
+    
+    nav {
+        position: relative;
+        top: initial;
+        left: initial;
+        margin: 15px auto;
+        width: 90%;
+        text-align: center;
+    }
+    
+    nav ul {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    nav li {
+        margin: 8px;
+    }
+    
+    nav a {
+        font-size: 16px;
+        padding: 8px 12px;
+        white-space: nowrap;
+    }
+    
+    /* Ajustes específicos para a barra de cabeçalho */
+    body::before {
+        font-size: 16px;
+        padding: 0 10px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    
+    body::after {
+        background-position: 10px center;
+        background-size: auto 50px;
+    }
+    
+    .home-link {
+        left: 10px;
+        font-size: 14px;
+    }
+}

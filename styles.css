@@ -1,30 +1,92 @@
+/* styles.css - Versão Atualizada */
+
+/* Configurações base (mantidas do seu original) */
 html, body {
-    height: 100%; /* Garante que tanto o <html> quanto o <body> ocupem 100% da altura da janela */
-    margin: 0;    /* Remove margens padrão do navegador */
-    padding: 0;   /* Remove espaçamentos padrão do navegador */
-    overflow: hidden; /* Remove qualquer barra de rolagem */
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    font-family: Arial, sans-serif; /* Adicionado para consistência */
 }
 
 body {
-    background-image: url('background.jpeg'); /* Substitua pelo caminho da sua imagem */
-    background-size: cover; /* Faz a imagem cobrir toda a área visível */
-    background-repeat: no-repeat; /* Evita repetição da imagem */
-    background-position: center; /* Centraliza a imagem */
+    background-image: url('background.jpeg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: flex;
+    flex-direction: column; /* Novo: organiza os elementos em coluna */
 }
+
+/* ===== NOVOS ESTILOS PARA AS BARRAS ===== */
+/* Barra azul superior */
+.header-bar {
+    background-color: #0054A6;
+    color: white;
+    height: 43px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    position: relative;
+    z-index: 1000;
+    flex-shrink: 0; /* Impede que a barra diminua */
+}
+
+.header-title {
+    margin: 0;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* Barra branca com logo */
+.white-bar {
+    background-color: white;
+    height: 75px;
+    border-bottom: 1px solid #e0e0e0;
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+    flex-shrink: 0; /* Impede que a barra diminua */
+}
+
+.logo {
+    height: 60px;
+    width: auto;
+    max-width: 200px;
+}
+
+/* Container principal ajustado */
+.main-content {
+    flex-grow: 1; /* Ocupa todo espaço restante */
+    overflow: auto; /* Permite rolagem apenas no conteúdo */
+    position: relative;
+}
+
+/* ===== SEUS ESTILOS ORIGINAIS ===== */
 @media (max-width: 768px) {
     .seu-elemento {
         font-size: 14px;
         padding: 10px;
     }
+    
+    /* Adaptação para mobile */
+    .header-title {
+        font-size: 16px;
+    }
+    .logo {
+        height: 50px;
+    }
 }
-        a {
-            font-size: 24px; /* Define o tamanho da fonte */
-            color: white; /* Define a cor branca */
-            text-decoration: none; /* Remove o sublinhado */
-        }
-        a:visited {
-            color: white; /* Mantém a cor branca após o clique */
-        }
-        a:hover {
-            color: lightgray; /* (Opcional) Altera a cor ao passar o mouse */
-        }
+
+a {
+    font-size: 24px;
+    color: white;
+    text-decoration: none;
+}
+a:visited {
+    color: white;
+}
+a:hover {
+    color: lightgray;
+}

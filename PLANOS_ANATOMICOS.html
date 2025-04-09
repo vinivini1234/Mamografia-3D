@@ -10,29 +10,39 @@
             padding: 0;
             font-family: Arial, sans-serif;
             height: 100%;
-            overflow: hidden; /* Remove barras de rolagem globais */
+            overflow: hidden;
         }
         
-        /* Barra de cabeçalho azul */
+        /* Barra azul superior */
         .header-bar {
             background-color: #0054A6;
             color: white;
-            padding: 12px 20px; /* Reduzi um pouco o padding */
-            text-align: center;
+            height: 43px; /* Altura especificada */
+            display: flex;
+            align-items: center;
+            justify-content: center;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            height: 60px; /* Altura fixa */
-            box-sizing: border-box;
         }
         
         .header-title {
             margin: 0;
-            font-size: 20px; /* Tamanho um pouco menor */
+            font-size: 18px;
             font-weight: bold;
-            line-height: 36px; /* Centraliza verticalmente */
         }
         
+        /* Barra branca inferior */
+        .white-bar {
+            background-color: white;
+            height: 75px; /* Altura especificada */
+            border-bottom: 1px solid #e0e0e0; /* Linha sutil para separação */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* Container do visualizador */
         #viewer-container {
-            height: calc(100vh - 60px); /* 100% da viewport menos altura do cabeçalho */
+            height: calc(100vh - 118px); /* 100vh - (43px + 75px) */
             width: 100%;
             position: relative;
         }
@@ -48,9 +58,14 @@
 </style>
 </head>
 <body>
-    <!-- Barra de cabeçalho azul -->
+    <!-- Barra azul superior -->
     <div class="header-bar">
         <h1 class="header-title">VISUALIZADOR ANATÔMICO 3D</h1>
+    </div>
+
+    <!-- Barra branca inferior -->
+    <div class="white-bar">
+        <!-- Espaço para conteúdo adicional se necessário -->
     </div>
 
     <!-- Visualizador 3D -->

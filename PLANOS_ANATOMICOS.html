@@ -5,29 +5,84 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>PLANOS_ANATOMICOS</title>
     <style>
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-        }
-        
-        #viewer-wrapper {
-            width: 100%;
-            height: 0;
-            padding-bottom: 56.25%; /* Proporção 16:9 (9/16=0.5625) */
-            position: relative;
-            overflow: hidden;
-        }
-        
-        #embedded-human {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-    </style>
+    /* Cabeçalho SENAC */
+    .senac-header {
+        background-color: #0054A6; /* Azul SENAC */
+        color: white;
+        padding: 15px 0;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        position: relative;
+        z-index: 1000;
+    }
+    
+    .senac-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 20px;
+    }
+    
+    .senac-logo {
+        font-weight: bold;
+        font-size: 28px;
+        letter-spacing: 1px;
+    }
+    
+    .senac-slogan {
+        font-style: italic;
+        font-size: 18px;
+        margin-top: 5px;
+    }
+    
+    .senac-nav {
+        display: flex;
+        gap: 20px;
+    }
+    
+    .senac-nav a {
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+        transition: opacity 0.3s;
+    }
+    
+    .senac-nav a:hover {
+        opacity: 0.8;
+    }
+    
+    /* Conteúdo principal */
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+    }
+    
+    .content {
+        padding: 20px;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+    
+    /* Visualizador responsivo */
+    #viewer-wrapper {
+        width: 100%;
+        height: 0;
+        padding-bottom: 56.25%;
+        position: relative;
+        margin: 20px 0;
+    }
+    
+    #embedded-human {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: none;
+    }
+</style>
 <link rel="stylesheet" href="styles.css">
 <iframe id="embedded-human" frameBorder="0" style="aspect-ratio: 16 / 9; width: 100%" allowFullScreen="true" loading="lazy" 
 src="https://human.biodigital.com/viewer/?id=65Lp&ui-anatomy-descriptions=true&ui-anatomy-pronunciations=true&ui-anatomy-labels=true&ui-audio=true&ui-chapter-list=false&ui-fullscreen=true&ui-help=true&ui-info=true&ui-label-list=true&ui-layers=true&ui-skin-layers=true&ui-loader=circle&ui-media-controls=full&ui-menu=true&ui-nav=true&ui-search=true&ui-tools=true&ui-tutorial=false&ui-undo=true&ui-whiteboard=true&initial.none=true&disable-scroll=false&uaid=M2VB3&lang=pt&paid=o_045c6c4d"></iframe>

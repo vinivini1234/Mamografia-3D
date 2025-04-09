@@ -4,8 +4,43 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>PLANOS_ANATOMICOS</title>
+<style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            height: 100%;
+            overflow: hidden;
+        }      
+        /* Container do visualizador */
+        #viewer-container {
+            height: calc(100vh - 118px); /* 100vh - (43px + 75px) */
+            width: 100%;
+            position: relative;
+        }
+        
+        #embedded-human {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+</style>
 </head>
 <body>
+    <!-- Barra azul superior -->
+    <div class="header-bar">
+        <h1 class="header-title">VISUALIZADOR ANATÔMICO 3D</h1>
+    </div>
+
+    <!-- Barra branca com logo -->
+    <div class="white-bar">
+        <!-- Substitua "caminho/para/sua/logo.png" pelo caminho real da sua imagem -->
+        <img src="logo.png" alt="Logo" class="logo">
+    </div>
+
     <!-- Visualizador 3D -->
     <div id="viewer-container">
         <iframe id="embedded-human" 

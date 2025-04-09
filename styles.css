@@ -9,7 +9,7 @@ body {
 
 /* BARRA AZUL (FIXA NO TOPO) */
 body::before {
-    content: "Senac"; /* Texto do cabeçalho */
+    content: ""; /* Texto do cabeçalho */
     display: block;
     background-color: #0054A6;
     color: white;

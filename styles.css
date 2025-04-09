@@ -61,7 +61,7 @@ nav li {
 }
 
 nav a {
-    display: block;
+    display: inline-block;
     font-size: 24px;
     color: white;
     background-color: rgba(0, 84, 166, 0.7);

@@ -17,7 +17,7 @@
         .header-bar {
             background-color: #0054A6;
             color: white;
-            height: 43px; /* Altura especificada */
+            height: 43px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -30,14 +30,19 @@
             font-weight: bold;
         }
         
-        /* Barra branca inferior */
+        /* Barra branca com logo */
         .white-bar {
             background-color: white;
-            height: 75px; /* Altura especificada */
-            border-bottom: 1px solid #e0e0e0; /* Linha sutil para separação */
+            height: 75px;
+            border-bottom: 1px solid #e0e0e0;
             display: flex;
-            align-items: center;
-            justify-content: center;
+            align-items: center; /* Centraliza verticalmente */
+            padding-left: 20px; /* Espaço da margem esquerda */
+        }
+        
+        .logo {
+            height: 60px; /* Altura da logo (ajuste conforme necessário) */
+            width: auto; /* Mantém proporção original */
         }
         
         /* Container do visualizador */
@@ -63,9 +68,10 @@
         <h1 class="header-title">VISUALIZADOR ANATÔMICO 3D</h1>
     </div>
 
-    <!-- Barra branca inferior -->
+    <!-- Barra branca com logo -->
     <div class="white-bar">
-        <!-- Espaço para conteúdo adicional se necessário -->
+        <!-- Substitua "caminho/para/sua/logo.png" pelo caminho real da sua imagem -->
+        <img src="images/senaclogo.png" alt="Logo" class="logo">
     </div>
 
     <!-- Visualizador 3D -->

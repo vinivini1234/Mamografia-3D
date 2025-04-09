@@ -5,33 +5,36 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>PLANOS_ANATOMICOS</title>
 <style>
-        body {
+        html, body {
             margin: 0;
             padding: 0;
             font-family: Arial, sans-serif;
+            height: 100%;
+            overflow: hidden; /* Remove barras de rolagem globais */
         }
         
         /* Barra de cabeçalho azul */
         .header-bar {
-            background-color: #0054A6; /* Azul padrão - pode ajustar */
+            background-color: #0054A6;
             color: white;
-            padding: 15px 20px;
+            padding: 12px 20px; /* Reduzi um pouco o padding */
             text-align: center;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            height: 60px; /* Altura fixa */
+            box-sizing: border-box;
         }
         
         .header-title {
             margin: 0;
-            font-size: 24px;
+            font-size: 20px; /* Tamanho um pouco menor */
             font-weight: bold;
+            line-height: 36px; /* Centraliza verticalmente */
         }
         
-        #viewer-wrapper {
+        #viewer-container {
+            height: calc(100vh - 60px); /* 100% da viewport menos altura do cabeçalho */
             width: 100%;
-            height: 0;
-            padding-bottom: 56.25%; /* Proporção 16:9 */
             position: relative;
-            overflow: hidden;
         }
         
         #embedded-human {
@@ -51,7 +54,7 @@
     </div>
 
     <!-- Visualizador 3D -->
-    <div id="viewer-wrapper">
+    <div id="viewer-container">
         <iframe id="embedded-human" 
                 frameBorder="0"
                 allowFullScreen="true" 

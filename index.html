@@ -4,6 +4,63 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SABER</title>
+<style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            height: 100%;
+            overflow: hidden;
+        }
+        
+        /* Barra azul superior */
+        .header-bar {
+            background-color: #0054A6;
+            color: white;
+            height: 43px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .header-title {
+            margin: 0;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        
+        /* Barra branca com logo */
+        .white-bar {
+            background-color: white;
+            height: 75px;
+            border-bottom: 1px solid #e0e0e0;
+            display: flex;
+            align-items: center; /* Centraliza verticalmente */
+            padding-left: 20px; /* Espaço da margem esquerda */
+        }
+        
+        .logo {
+            height: 60px; /* Altura da logo (ajuste conforme necessário) */
+            width: auto; /* Mantém proporção original */
+        }
+        
+        /* Container do visualizador */
+        #viewer-container {
+            height: calc(100vh - 118px); /* 100vh - (43px + 75px) */
+            width: 100%;
+            position: relative;
+        }
+        
+        #embedded-human {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+</style>
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>

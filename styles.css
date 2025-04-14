@@ -13,7 +13,7 @@ body {
 
 /* BARRA AZUL (FIXA NO TOPO) */
 body::before {
-    content: "VISUALIZADOR ANATÔMICO 3D"; /* Texto do cabeçalho */
+    content: ""; /* Texto do cabeçalho */
     display: block;
     background-color: #0054A6;
     color: white;

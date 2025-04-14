@@ -5,10 +5,8 @@ body {
     font-family: Arial, sans-serif;
     background-image: url('background.jpeg');
     background-size: cover;
-    padding-top: 118px; /* 43px (barra azul) + 75px (barra branca) */
     min-height: 100vh;
-    overflow: hidden; /* Remove barras de rolagem */
-    position: relative; /* Contexto para posicionamento absoluto */
+    position: relative;
 }
 
 /* BARRA AZUL (FIXA NO TOPO) */
@@ -24,8 +22,10 @@ body::before {
     font-size: 18px;
     position: fixed;
     top: 0;
+    left: 0;
+    right: 0;
     width: 100%;
-    z-index: 100; /* Garante que fique acima do conteúdo */
+    z-index: 100;
 }
 
 /* BARRA BRANCA (FIXA ABAIXO DA AZUL) */
@@ -38,18 +38,19 @@ body::after {
     border-bottom: 1px solid #ddd;
     position: fixed;
     top: 43px;
+    left: 0;
+    right: 0;
     width: 100%;
-    z-index: 100; /* Mesmo nível da barra azul */
+    z-index: 100;
 }
 
 /* CONTAINER PRINCIPAL E IFRAME */
 #viewer-container {
-    position: fixed;
-    top: 118px; /* Inicia abaixo das barras */
-    left: 0;
+    position: relative;
     width: 100%;
     height: calc(100vh - 118px); /* 100% da viewport menos altura das barras */
-    z-index: 10; /* Fica abaixo das barras */
+    margin-top: 118px; /* 43px (barra azul) + 75px (barra branca) */
+    z-index: 10;
 }
 
 #embedded-human {
@@ -66,7 +67,7 @@ nav {
     top: 150px; /* Abaixo das barras + margem */
     left: 20px;
     background: transparent;
-    z-index: 100; /* Mesmo nível das barras */
+    z-index: 100;
 }
 
 nav ul {
@@ -96,132 +97,18 @@ nav a:hover {
 
 /* LINK "PÁGINA INICIAL" NA BARRA AZUL */
 .home-link {
-    position: absolute;
+    position: fixed;
     left: 20px;
+    top: 0;
     color: white;
     text-decoration: none;
     font-weight: bold;
-    z-index: 101; /* Acima da barra azul */
-    line-height: 43px; /* Centraliza verticalmente */
+    z-index: 101;
+    line-height: 43px;
 }
 
 .home-link:hover {
     text-decoration: underline;
 }
-/* ... (mantenha todo o CSS existente acima) ... */
 
-/* AJUSTES OTIMIZADOS PARA DISPOSITIVOS MÓVEIS */
-@media (max-width: 768px) {
-    body {
-        padding-bottom: 30px;
-        overflow-y: auto;
-        -webkit-overflow-scrolling: touch; /* Melhora rolagem no iOS */
-    }
-    
-    #viewer-container {
-        position: relative;
-        top: 118px;
-        height: auto;
-        min-height: calc(100vh - 118px);
-        padding-bottom: 30px;
-        overflow: visible; /* Permite que conteúdo extra seja visível */
-    }
-    
-    #embedded-human {
-        min-height: 60vh;
-        height: auto;
-        max-height: calc(100vh - 150px); /* Considera espaço adicional */
-    }
-    
-    nav {
-        position: relative;
-        top: initial;
-        left: initial;
-        margin: 15px auto;
-        width: 90%;
-        text-align: center;
-    }
-    
-    nav ul {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-    
-    nav li {
-        margin: 8px;
-    }
-    
-    nav a {
-        font-size: 16px;
-        padding: 8px 12px;
-        white-space: nowrap;
-    }
-    
-    /* Ajustes específicos para a barra de cabeçalho */
-    body::before {
-        font-size: 16px;
-        padding: 0 10px;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-    
-    body::after {
-        background-position: 10px center;
-        background-size: auto 50px;
-    }
-    
-    .home-link {
-        left: 10px;
-        font-size: 14px;
-    }
-}
-
-/* ADICIONE ISSO AO SEU STYLES.CSS EXISTENTE */
-
-/* ============================================= */
-/* CORREÇÃO PARA PÁGINAS DO ANIMATE (APENAS CSS) */
-/* ============================================= */
-
-/* 1. Reset completo para páginas do Animate */
-body:has(> canvas#canvas) {
-    overflow: hidden !important;
-    height: 100vh !important;
-    width: 100vw !important;
-    position: fixed !important;
-    margin: 0 !important;
-    padding: 0 !important;
-}
-
-/* 2. Redimensionamento perfeito do canvas */
-body:has(> canvas#canvas) canvas#canvas {
-    position: fixed !important;
-    top: 118px !important;
-    left: 50% !important;
-    transform: translateX(-50%) !important;
-    width: auto !important;
-    height: calc(100vh - 118px) !important;
-    max-width: 100% !important;
-    object-fit: contain !important;
-    display: block !important;
-}
-
-/* 3. Garante que o HTML não cause scroll */
-html:has(body:has(> canvas#canvas)) {
-    overflow: hidden !important;
-    height: 100% !important;
-}
-
-/* 4. Corrige posicionamento do cabeçalho */
-body:has(> canvas#canvas)::before,
-body:has(> canvas#canvas)::after {
-    position: fixed !important;
-    z-index: 1000 !important;
-}
-
-/* 5. Corrige link home se existir */
-body:has(> canvas#canvas) .home-link {
-    position: fixed !important;
-    z-index: 1001 !important;
-}
+/* ... (mantenha o restante do seu CSS existente) ... */

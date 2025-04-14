@@ -1,80 +1,71 @@
-/* RESET */
-body {
+/* RESET COMPLETO */
+html, body {
     margin: 0;
     padding: 0;
+    height: 100%;
+    overflow-x: hidden;
     font-family: Arial, sans-serif;
-    background-image: url('background.jpeg');
-    background-size: cover;
-    min-height: 100vh;
-    position: relative;
 }
 
-/* BARRA AZUL (FIXA NO TOPO) */
-body::before {
-    content: ""; /* Texto do cabeçalho */
-    display: block;
-    background-color: #0054A6;
-    color: white;
-    height: 43px;
-    line-height: 43px;
-    text-align: center;
-    font-weight: bold;
-    font-size: 18px;
+/* CABEÇALHO FIXO - VERSÃO SIMPLIFICADA */
+.header-container {
     position: fixed;
     top: 0;
     left: 0;
-    right: 0;
     width: 100%;
-    z-index: 100;
+    z-index: 1000;
 }
 
-/* BARRA BRANCA (FIXA ABAIXO DA AZUL) */
-body::after {
-    content: "";
-    display: block;
+.blue-bar {
+    background-color: #0054A6;
+    color: white;
+    height: 43px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.white-bar {
     background: white url('logo.png') no-repeat 20px center;
     background-size: auto 60px;
     height: 75px;
     border-bottom: 1px solid #ddd;
-    position: fixed;
-    top: 43px;
-    left: 0;
-    right: 0;
-    width: 100%;
-    z-index: 100;
 }
 
-/* CONTAINER PRINCIPAL E IFRAME */
-#viewer-container {
-    position: relative;
+.home-link {
+    position: absolute;
+    left: 20px;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* CONTEÚDO PRINCIPAL */
+.main-content {
+    margin-top: 118px; /* 43px + 75px */
+    height: calc(100vh - 118px);
     width: 100%;
-    height: calc(100vh - 118px); /* 100% da viewport menos altura das barras */
-    margin-top: 118px; /* 43px (barra azul) + 75px (barra branca) */
-    z-index: 10;
 }
 
 #embedded-human {
     width: 100%;
     height: 100%;
-    min-height: 600px;
     border: none;
     display: block;
 }
 
-/* NAVEGAÇÃO - ESTILO VERTICAL */
+/* NAVEGAÇÃO */
 nav {
     position: fixed;
-    top: 150px; /* Abaixo das barras + margem */
+    top: 150px;
     left: 20px;
-    background: transparent;
-    z-index: 100;
+    z-index: 1000;
 }
 
 nav ul {
     list-style: none;
     padding: 0;
-    margin: 0;
-    display: block;
 }
 
 nav li {
@@ -82,33 +73,46 @@ nav li {
 }
 
 nav a {
-    display: inline-block;
+    display: block;
     font-size: 24px;
     color: white;
     background-color: rgba(0, 84, 166, 0.7);
     text-decoration: none;
-    padding: 10px;
+    padding: 10px 15px;
     border-radius: 4px;
 }
 
-nav a:hover {
-    background-color: rgba(0, 84, 166, 0.9);
+/* AJUSTES PARA DISPOSITIVOS MÓVEIS */
+@media (max-width: 768px) {
+    .white-bar {
+        background-position: 10px center;
+        background-size: auto 50px;
+    }
+    
+    .main-content {
+        margin-top: 118px;
+        height: auto;
+        min-height: calc(100vh - 118px);
+    }
+    
+    nav {
+        position: static;
+        margin: 20px auto;
+        width: 90%;
+    }
+    
+    nav ul {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    nav li {
+        margin: 5px;
+    }
+    
+    nav a {
+        font-size: 16px;
+        padding: 8px 12px;
+    }
 }
-
-/* LINK "PÁGINA INICIAL" NA BARRA AZUL */
-.home-link {
-    position: fixed;
-    left: 20px;
-    top: 0;
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-    z-index: 101;
-    line-height: 43px;
-}
-
-.home-link:hover {
-    text-decoration: underline;
-}
-
-/* ... (mantenha o restante do seu CSS existente) ... */

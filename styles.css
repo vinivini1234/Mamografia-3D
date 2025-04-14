@@ -12,7 +12,7 @@ body {
 
 /* BARRA AZUL (FIXA NO TOPO) */
 body::before {
-    content: "Título da Página"; /* Texto padrão que pode ser sobrescrito */
+    content: "Título da Página";
     display: block;
     background-color: #0054A6;
     color: white;
@@ -44,9 +44,37 @@ body::after {
     box-sizing: border-box;
 }
 
-/* CONTEÚDO PRINCIPAL (ESTILO PADRÃO PARA TODAS AS PÁGINAS) */
+/* ============================================= */
+/* ESTILOS ESPECÍFICOS PARA PÁGINAS DO ANIMATE */
+/* ============================================= */
+
+/* Detecta páginas com canvas do Animate e aplica estilos específicos */
+body:has(> canvas#canvas) {
+    overflow: hidden;
+}
+
+/* Redimensiona o canvas do Animate */
+body:has(> canvas#canvas) canvas#canvas {
+    position: fixed !important;
+    top: 118px !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: calc(100vh - 118px) !important;
+    object-fit: contain;
+}
+
+/* Garante que o html não gere barras de rolagem */
+html:has(body:has(> canvas#canvas)) {
+    overflow: hidden !important;
+}
+
+/* ============================================= */
+/* ESTILOS GERAIS (PARA TODAS AS PÁGINAS) */
+/* ============================================= */
+
+/* CONTEÚDO PRINCIPAL */
 .main-content {
-    margin-top: 118px; /* Compensa altura das barras */
+    margin-top: 118px;
     padding: 20px;
     position: relative;
     z-index: 1;
@@ -54,7 +82,7 @@ body::after {
     box-sizing: border-box;
 }
 
-/* ESTILO PADRÃO PARA VIEWERS (IFRAMES, ETC) */
+/* VIEWERS (IFRAMES, ETC) */
 .viewer-container {
     position: relative;
     width: 100%;
@@ -71,7 +99,7 @@ body::after {
     display: block;
 }
 
-/* NAVEGAÇÃO - ESTILO VERTICAL */
+/* NAVEGAÇÃO */
 nav {
     position: fixed;
     top: 150px;
@@ -80,7 +108,7 @@ nav {
     z-index: 1000;
 }
 
-/* LINK "PÁGINA INICIAL" NA BARRA AZUL */
+/* LINK "PÁGINA INICIAL" */
 .home-link {
     position: fixed;
     left: 20px;
@@ -95,4 +123,10 @@ nav {
 /* MEDIA QUERIES PARA MOBILE */
 @media (max-width: 768px) {
     /* ... (mantenha seus estilos mobile existentes) ... */
+    
+    /* Ajustes para Animate em mobile */
+    body:has(> canvas#canvas) canvas#canvas {
+        top: 118px !important;
+        height: calc(100vh - 118px) !important;
+    }
 }

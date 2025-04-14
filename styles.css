@@ -177,3 +177,51 @@ nav a:hover {
         font-size: 14px;
     }
 }
+
+/* ADICIONE ISSO AO SEU STYLES.CSS EXISTENTE */
+
+/* ============================================= */
+/* CORREÇÃO PARA PÁGINAS DO ANIMATE (APENAS CSS) */
+/* ============================================= */
+
+/* 1. Reset completo para páginas do Animate */
+body:has(> canvas#canvas) {
+    overflow: hidden !important;
+    height: 100vh !important;
+    width: 100vw !important;
+    position: fixed !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* 2. Redimensionamento perfeito do canvas */
+body:has(> canvas#canvas) canvas#canvas {
+    position: fixed !important;
+    top: 118px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    width: auto !important;
+    height: calc(100vh - 118px) !important;
+    max-width: 100% !important;
+    object-fit: contain !important;
+    display: block !important;
+}
+
+/* 3. Garante que o HTML não cause scroll */
+html:has(body:has(> canvas#canvas)) {
+    overflow: hidden !important;
+    height: 100% !important;
+}
+
+/* 4. Corrige posicionamento do cabeçalho */
+body:has(> canvas#canvas)::before,
+body:has(> canvas#canvas)::after {
+    position: fixed !important;
+    z-index: 1000 !important;
+}
+
+/* 5. Corrige link home se existir */
+body:has(> canvas#canvas) .home-link {
+    position: fixed !important;
+    z-index: 1001 !important;
+}
